@@ -1,25 +1,30 @@
-# Materials Science Flashcards - GitHub Pages
+# 材料科学基础 · 完整答案修复版（v3）
 
-Static website. No server, database, Node.js, or build step is required.
+此次修复：
 
-## Publish
+- 每道卡片新增原书完整页扫描对照，不再依赖可能被 OCR 截断的公式文字。
+- 纠错资料匹配的 78 张卡片，将所有匹配页按顺序连续显示，不再只显示第一页。
+- 修正第 9 章例题 9-5、9-6，第 10 章例题 10-1～10-5 的空白占位答案，补充第 10 章习题 10-23、10-24 跨页解析。
+- 另外修复 10 道原书答案定位遗漏题（包括习题4-10、7-2、9-7、9-16～9-18等），让这些题直接显示原书参考答案，而非误报“没有答案”。
+- 原书第 11 章综合思考题没有标准参考答案；页面会明确说明，而不是编造答案。
+- 修复答案区域的固定高度裁切；点击扫描页图片可放大。
+- 使用原来的本地存储 KEY，已保存的笔记、复习状态不应因升级而清空；建议更新前先导出 JSON 备份。
+- 将网页导航改为网络优先，减少 GitHub Pages 更新后被旧缓存困住的情况。
 
-1. Create a new GitHub repository, e.g., `matsci-flashcards`. On GitHub Free, use a public repository for Pages.
-2. Upload the CONTENTS of this folder to the repository root, with `index.html` at root (do not upload the ZIP itself).
-3. Open repository Settings > Pages > Build and deployment. Select Source: Deploy from a branch; Branch: main; Folder: /(root); click Save.
-4. Access https://YOUR-USERNAME.github.io/matsci-flashcards/
+## 上传到 GitHub Pages
 
-## How it works
+1. 克隆现有 `iKaiao/matsci-flashcards` 仓库（GitHub Desktop）。
+2. 解压本包，把包内的所有文件与文件夹拷到克隆的仓库根目录，覆盖同名文件。
+3. **保留仓库已有的 `.git` 和 `CNAME`**；此包不包含它们。
+4. 在 GitHub Desktop `Commit to main` 然后 `Push origin`。
+5. 打开 Pages 网站，必要时无痕访问或强制刷新。
 
-- 303 cards; original corrected-answer scans on 78 cards.
-- Notes and review history are saved to THIS browser's localStorage, not synced between devices.
-- To move from local files to GitHub Pages, export a JSON backup first and import it on the Pages site.
-- HTTPS enables the service worker to cache site assets as they are viewed.
+## 文件说明
 
-## Visibility, rights, and privacy
+- `index.html`: 303 张卡片、随卡笔记、完整页扫描入口
+- `corrections/page-NNN.jpg`: 用户提供的纠错资料扫描页，按题号匹配到 78 张卡片
+- `book-pages/page-NNN.jpg`: 从原书 PDF 渲染的整页图，保留跨页公式和图表
+- `book.pdf`、`answers-corrected.pdf`: 完整文档
+- `sw.js`: PWA 离线缓存（首次在线打开后逐步缓存已访问过的扫描页）
 
-GitHub Pages sites are public, even when the underlying repository is private. Source material and scans may be copyrighted: publish only with appropriate permission. Do not put private notes or credentials in this repository. Study notes stay in each browser (not the repo), but a shared computer can access the local browser's stored notes.
-
-## Full edition
-
-Includes `book.pdf` and `answers-corrected.pdf` to support the original-PDF buttons. Verify you have permission to distribute these files publicly before uploading. If not, use the light edition (the flashcards and excerpt scans may also have rights restrictions).
+注意：公开仓库中的教材及纠错扫描属于对外发布，请确认拥有公开传播权限。
